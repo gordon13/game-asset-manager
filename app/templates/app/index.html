@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="jumbotron">
+	<h1>Dashboard<h1>
+	<h1>{{view.project_name}}<h1>
+	<p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+	<ul>
+	{% for asset in view.get_assets %}
+		<p>{{asset}}</p>
+	{% endfor %}
+	</ul>
+	<p>
+		<a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs »</a>
+	</p>
+</div>
+
+
+{% endblock %}
