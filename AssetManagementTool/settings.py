@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import re
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -133,3 +134,10 @@ STATICFILES_DIRS = (
 ASSET_TYPES = ( ('art','Art'),
                 ('audio','Audio'),
                 ('writing','Writing'))
+
+ASSET_STATUSES =  ( ('new','New'),
+                    ('in_progress','In progress'),
+                    ('done','Done'),
+                    ('to_be_deleted','To be deleted'))
+
+REGEX_ALLOWED_NAME_CHARACTERS =  re.compile("^([aA-zZ0-9]){0,50}$")

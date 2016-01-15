@@ -19,13 +19,14 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="{% url 'index' %}">DG Asset Manager</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Contact</a></li>
+              <li class="active"><a href="{% url 'art-section' %}">Art</a></li>
+              <li><a href="{% url 'audio-section' %}">Audio</a></li>
+              <li><a href="{% url 'writing-section' %}">Writing</a></li>
+              <li><a href="{% url 'code-section' %}">Code</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -45,5 +46,7 @@
 	{% block content %}
 	{% endblock %}   
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script href="{% static 'js/bootstrap.min.js' %}" rel="text/javascript"></script>
 </body>
 </html>

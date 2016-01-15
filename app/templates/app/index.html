@@ -1,18 +1,44 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load app_extras %}
 <div class="jumbotron">
 	<h1>Dashboard<h1>
-	<h1>{{view.project_name}}<h1>
 	<p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-	<ul>
-	{% for asset in view.get_assets %}
-		<p>{{asset}}</p>
-	{% endfor %}
-	</ul>
 	<p>
 		<a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs »</a>
 	</p>
 </div>
 
+<div class="panel panel-success">
+	<!-- Default panel contents -->
+	<div class="panel-heading"><b>Latest assets</b></div>
+
+	<table class="table"> 
+		<thead> 
+			<tr> 
+				<th>Time</th>
+				<th>Type</th> 
+				<th>Asset</th> 
+				<th>User</th> 
+				<th>Status</th>  
+				</tr> 
+			</thead> 
+		<tbody> 
+		{% for asset in assets %}
+			<tr> 
+				<th scope="row">{{asset.date}}</th> 
+				<td>
+					<span class="label label-pill {% asset_type_label_class asset.asset_type %}">{{asset.get_asset_type_display}}</span>
+				</td> 
+				<td>{{asset.name}}</td> 
+				<td>Paul Le henaff</td> 
+				<td>
+					<span class="label 	{% asset_status_label_class asset.status %}">{{asset.get_status_display}}</span>
+				</td> 
+			</tr> 
+		{% endfor %}
+		</tbody> 
+	</table>
+</div>
 
 {% endblock %}

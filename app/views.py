@@ -1,38 +1,59 @@
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic import TemplateView
 from django.shortcuts import render
-
+from django.template import RequestContext
 from models import Asset
 
-class BaseView(TemplateView):
-    template_name = "app/index.html"
+def dashboard(request):
+    assets = Asset.objects.order_by('date')[:5]
+    return render(
+        request,
+        'app/index.html',
+        context_instance = RequestContext(request,
+        {
+            'assets':assets
+        })
+    )
 
-    def get_assets(self):
-        return Asset.objects.all()
+def art_section(request):
+    assets = Asset.objects.filter(asset_type='art').order_by('-date')[:5]
+    return render(
+        request,
+        'app/index.html',
+        context_instance = RequestContext(request,
+        {
+            'assets':assets
+        })
+    )
 
+def audio_section(request):
+    assets = Asset.objects.filter(asset_type='audio').order_by('-date')[:5]
+    return render(
+        request,
+        'app/index.html',
+        context_instance = RequestContext(request,
+        {
+            'assets':assets
+        })
+    )
 
-class DashboardView(TemplateView):
-	template_name = "app/index.html"
+def writing_section(request):
+    assets = Asset.objects.filter(asset_type='writing').order_by('-date')[:5]
+    return render(
+        request,
+        'app/index.html',
+        context_instance = RequestContext(request,
+        {
+            'assets':assets
+        })
+    )
 
-	def get_assets(self):
-		return Asset.objects.all()
-
-
-
-
-"""
-Asset creation, updation and deletion forms
-"""
-class AssetCreate(CreateView):
-    model = Asset
-    fields = ['name', 'asset_type']
-    success_url = reverse_lazy('index')
-
-class AssetUpdate(UpdateView):
-    model = Asset
-    fields = ['name', 'asset_type']
-
-class AssetDelete(DeleteView):
-    model = Asset
-    success_url = reverse_lazy('index')
+def code_section(request):
+    assets = Asset.objects.filter(asset_type='code').order_by('-date')[:5]
+    return render(
+        request,
+        'app/index.html',
+        context_instance = RequestContext(request,
+        {
+            'assets':assets
+        })
+    )

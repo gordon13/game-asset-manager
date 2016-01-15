@@ -17,14 +17,17 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-from app.views import DashboardView, AssetCreate, AssetUpdate, AssetDelete
+from app import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', DashboardView.as_view(), name='index'),
 
-    # asset creation, updation etc
-    url(r'asset/add/$', AssetCreate.as_view(), name='asset-add'),
-    url(r'asset/(?P<pk>[0-9]+)/$', AssetUpdate.as_view(), name='asset-update'),
-    url(r'asset/(?P<pk>[0-9]+)/delete/$', AssetDelete.as_view(), name='asset-delete'),
+    # Pages
+    url(r'^art/$', views.art_section, name='art-section'),
+    url(r'^audio$', views.audio_section, name='audio-section'),
+    url(r'^writing$', views.writing_section, name='writing-section'),
+    url(r'^code$', views.code_section, name='code-section'),
+    url(r'^$', views.dashboard, name='index'),
+
+    # API
 ]
