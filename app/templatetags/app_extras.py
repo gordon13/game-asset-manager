@@ -1,8 +1,15 @@
-from django import template
 from django.template.defaultfilters import stringfilter
+from django import template
+import time
 
 register = template.Library()
 
+
+
+
+"""
+Generate CSS class based on data e.g. status tags etc
+"""
 @register.simple_tag
 def asset_status_label_class(value):
 	""" 
@@ -16,7 +23,9 @@ def asset_status_label_class(value):
 		return 'label-danger'
 	else:
 		return 'label-primary'
-   
+"""
+Generate CSS class based on data e.g. status tags etc
+"""  
 @register.simple_tag
 def asset_type_label_class(value):
 	""" 
@@ -31,3 +40,15 @@ def asset_type_label_class(value):
 	else:
 		return 'label-primary'
     
+
+
+
+
+
+"""
+Convert epoch time to date and time
+"""
+@register.simple_tag
+def epoch_to_datetime(epoch):
+	return time.strftime('%d/%m/%Y %H:%M:%S', time.localtime(float(epoch)))
+

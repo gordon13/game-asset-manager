@@ -1,16 +1,20 @@
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render
 from django.template import RequestContext
+
+from PerforceConnector import ConnectPerforce as perforce
 from models import Asset
 
 def dashboard(request):
     assets = Asset.objects.order_by('date')[:5]
+    changes = perforce.get_changes()
     return render(
         request,
         'app/index.html',
         context_instance = RequestContext(request,
         {
-            'assets':assets
+            'assets':assets,
+            'changes':changes
         })
     )
 
